@@ -1,0 +1,58 @@
+body, html {
+    padding: 0;
+    margin: 0;
+    font-smooth: always;
+}
+
+canvas {
+    position: fixed;
+}
+
+/*MOBILE*/
+@media only screen and (min-width: 200px) and (max-width: 1160px) {
+    #main-container {
+        position: fixed;
+        z-index: 2;
+
+        h1, h4 {
+            text-align: left;
+            margin-left: 5vw;
+            padding-bottom: 5px;
+            color: #ffffff;
+            font-family: 'Major Mono Display', monospace;
+            font-weight: bold;
+            width: 90%;
+        }
+
+        h4 {
+            font-weight: lighter;
+            width: 80vw;
+            font-size: 100%;
+            border-left: 2px solid #fff;
+            padding: 7px;
+            line-height: 15px;
+        }
+    }
+
+    #written-content {
+        position: absolute;
+        z-index: 0;
+        margin-top: 60vw;
+    }
+
+    #controls-center {
+        position: fixed;
+        padding: 0vw;
+        bottom: 10vw;
+
+        button {
+            background-color: transparent;
+            font-family: monospace;
+            color: #fff;
+            border: 1px solid #fff;
+            font-size: 130%;
+            padding: 10px;
+            margin-left: 4.5vw;
+        }
+    }
+}
