@@ -5,7 +5,7 @@ body, html {
 }
 
 canvas {
-    position: absolute;
+    position: fixed;
 }
 
 /*MOBILE*/
@@ -26,33 +26,93 @@ canvas {
 
         h4 {
             font-weight: lighter;
-            width: 80vw;
+            width: 90vw;
             font-size: 100%;
             border-left: 2px solid #fff;
             padding: 7px;
-            line-height: 15px;
+            line-height: 20px;
         }
     }
 
     #written-content {
         position: absolute;
         z-index: 0;
-        margin-top: 60vw;
+        margin-top: 45vw;
+
+        h4 {
+            font-family: "Inconsolata";
+            font-size: 150%;
+            line-height: 30px;
+            text-align: left;
+        }
     }
 
     #controls-center {
         position: fixed;
         padding: 0vw;
-        bottom: 10vw;
+        bottom: 50px;
 
         button {
             background-color: transparent;
-            font-family: monospace;
+            font-family: "Inconsolata";
             color: #fff;
             border: 1px solid #fff;
             font-size: 130%;
             padding: 10px;
             margin-left: 4.5vw;
+        }
+
+        #set2-buttons {
+            display: none;
+        }
+    }
+
+    #contact-section {
+        position: absolute;
+        z-index: 10;
+        opacity: 0;
+        display: none;
+        overflow: hidden;
+
+        #input-container {
+            margin-top: 75vw;
+            padding-left: 4vw;
+            width: 100%;
+        }
+
+        textarea {
+            margin-top: 30px;
+        }
+
+        input[type=text], textarea, input[type=email] {
+            border: none;
+            border-left: 1px solid #ffffff;
+            padding-left: 2vw;
+            padding-top: 2vw;
+            padding-bottom: 2vw;
+            background-color: transparent;
+            color: #fff;
+            font-weight: lgihter;
+            font-size: 120%;
+            font-family: "Inconsolata";
+        }
+
+        input[type=text] {
+            border-bottom: 1px solid #fff;
+        }
+
+        input[type=text]::placeholder, textarea::placeholder, input[type=email]::placeholder {
+            color: #fff;
+        } 
+          
+        input[type=submit] {
+            background-color: transparent;
+            font-family: "Inconsolata";
+            color: #fff;
+            border: 1px solid #fff;
+            font-size: 110%;
+            margin-top: 3vw;
+            padding: 10px;
         }
     }
 }

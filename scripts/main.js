@@ -5,10 +5,10 @@ import OrbitControls from "../scripts/OrbitControls.js";
 
 console.log(THREEx.DomEvents);
 
-var cameraWork_flag = false;
-var cameraContact_flag = false;
+var cameraWork_flag = false, cameraContact_flag = false;
+var contact_flag = false, work_flag = false;
 
-var workPanel, workPanel_arr = [];
+var workPanel, workPanel_arr = [], geo_arr = [];
 
 class SceneManager {
     constructor(canvas) {
@@ -116,8 +116,15 @@ class SceneManager {
             return ddh;
         }
 
+        //builds the work panel TV
         function buildWorkPanel() {
 
+            cameraWork_flag = true;
+            cameraContact_flag = false;
+
+            controls.enabled = true;
+
+            //webgl rendering
             const workGeo = new THREE.PlaneGeometry(170, 100, 100);
             const workMaterial = new THREE.MeshStandardMaterial({ color: 0x000000, transparent: true, opacity: 0.8, side: THREE.DoubleSide });
 
@@ -134,12 +141,53 @@ class SceneManager {
                 workPanel_arr.push(workPanel);
             }
 
-            cameraWork_flag = true;
-            cameraContact_flag = false;
+            //aniamtions JQUERY
+            $("#written-content").fadeOut();
+            $("#intro-text").fadeOut();
+            $("#set1-buttons").fadeOut();
+            $("#set2-buttons").delay(1000).fadeIn();
 
-            controls.enabled = true;
+            //remove contact section
+            $("#contact-section").fadeOut();
+
+            setTimeout(function() {
+
+                $("#intro-text").text("My projects and skillset");
+                $("#intro-text").fadeIn();
+                
+            }, 700);
 
             return workPanel;
+        }
+
+        //tech stack geomesh's
+        function buildTECHSTACKgeo() {
+
+            const stackImage_arrSPHERE = ["css3.png", "firebase.png", "html5.png", "jquery.jpg", "react.png", "scss.png", "threeJS.png", "js.jpg"];
+            
+            const sphereGeo = new THREE.SphereGeometry(10, 10, 10);
+            const boxGeo = new THREE.BoxGeometry(15, 15, 15);
+
+            for (var i = 0; i < stackImage_arrSPHERE.length; i++) {
+
+                var sphereMat = new THREE.MeshBasicMaterial({
+                    map: new THREE.TextureLoader().load(`./stack_media/${stackImage_arrSPHERE[i]}`),
+                    transparent: true,
+                    side: THREE.DoubleSide
+                });
+
+                var stackSphere = new THREE.Mesh(boxGeo, sphereMat);
+                scene.add(stackSphere);
+                geo_arr.push(stackSphere);
+
+                geo_arr[i].position.x = Math.floor(Math.random() * (-70 - 60 + 1) + 60);
+                geo_arr[i].position.z = Math.floor(Math.random() * (400 - 200 + 1) + 200);
+            }
+
+            for (var x = 0; x < geo_arr.length; x++) {
+
+                return geo_arr[x];
+            }
         }
 
         function buildContactForm() {
@@ -148,6 +196,34 @@ class SceneManager {
             cameraWork_flag = false;
 
             controls.enabled = false;
+
+            if (contact_flag == true && work_flag !== true) {
+
+                $("#written-content").fadeOut();
+                // $("#controls-center").css({"bottom": "20vw"});
+                $("#intro-text").fadeOut();
+
+                setTimeout(function() {
+
+                    $("#intro-text").text("Bring an idea, and I'll bring it to life.");
+                    $("#intro-text").fadeIn();
+
+                    $("#connect-button").text("RESUME/URLS");
+                    //link resume button to pdf of resume
+                    
+                }, 700);
+
+                $("#contact-section").fadeIn();
+                $("#contact-section").delay(500).animate({opacity: "1"}, 500);
+                $("#input-container").delay(700).animate({opacity: "1", marginTop: "65vw"}, 500);
+
+                $("#connect-button").delay(200).fadeOut();
+                $("#connect-button").delay(4000).fadeIn()
+            
+            } else {
+
+                return false;
+            }
         }
 
         function setOrbitControls() {
@@ -168,11 +244,17 @@ class SceneManager {
 
         document.getElementById("portfolio-button").onmousedown = function () {
 
+            contact_flag = false;
+            work_flag = true;
+
             buildWorkPanel();
+            buildTECHSTACKgeo();
         };
 
         document.getElementById("connect-button").onmousedown = function () {
 
+            work_flag = false;
+            contact_flag = true;
             buildContactForm();
         };
 
@@ -213,7 +295,7 @@ class SceneManager {
                     camera.updateProjectionMatrix();
                 }
 
-                if (workPanel.position.y >= 45) {
+                if (workPanel.position.y >= 40) {
 
                     var current_pos = workPanel.position.y;
                     workPanel.position.y = current_pos;
@@ -238,6 +320,15 @@ class SceneManager {
                     camera.position.z -= 3;
                     camera.updateProjectionMatrix();
                 }
+            }
+
+            //TECH STACK animations
+            for (var i = 0; i < geo_arr.length; i++) {
+
+                geo_arr[i].position.y = Math.sin(time) * -2;
+
+                geo_arr[i].rotation.x = Math.cos(time) * 0.3;
+                geo_arr[i].rotation.z = time * 0.3;
             }
 
             ddh.rotation.x = time * 0.3;

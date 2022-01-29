@@ -7,6 +7,7 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@70.2,333;86.3,361&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
 
         <link rel = "stylesheet" type = "text/css" href = "assets/main.css" />
@@ -19,24 +20,38 @@
         <div id = "canvas"></div>
 
         <div id = "wrapper">
-            <div id = "main-container">
-                <h1> Hi my name is Akash.</h1>
+            <!--RETURN TO MAIN PAGE BUTTON HERE-->
+            <!--LOADING PAGE GOES HERE-->
+            <main id = "main-container">
+                <h1 id = "intro-text"> Hello world my name is Akash.</h1>
 
                 <div id = "written-content">
                     <h4> I am a creative developer based out of Toronto with a passion for creating responsive and interactive web applications using 
                         HTML/CSS, JavaScript, React, JQuery, NodeJS and much more! 
                     </h4>
                 </div>
+            </main>
 
-                <div id = "controls-center">
+            <div id = "controls-center">
+                <div id = "set1-buttons">
                     <button id = "portfolio-button"> PROJECTS & SKILLSET </button>
                     <button id = "connect-button"> LETS CONNECT </button>
                 </div>
+
+                <div id = "set2-buttons">
+                    <button id = "next-button"> NEXT PROJECT </button>
+                    <button id = "prev-button"> PREV PROJECT </button>
+                </div>
             </div>
 
-            <div id = "contact-section">
-                
-            </div>
+            <section id = "contact-section">
+                <form id = "input-container">
+                    <input type = "text" id = "name-input" placeholder = "Name(required)" required>
+                    <input type = "email" id = "email-input" placeholder = "Email(required)" require>
+                    <textarea id = "message-input" placeholder = "Message(required)" cols = "38" rows = "5"></textarea>
+                    <input type = "submit" id = "submit-button" value = "Whats your idea!">
+                </form>
+            </section>
         </div>
     </body>
 

@@ -5,7 +5,7 @@ body, html {
 }
 
 canvas {
-  position: absolute;
+  position: fixed;
 }
 
 /*MOBILE*/
@@ -25,30 +25,90 @@ canvas {
   }
   #main-container h4 {
     font-weight: lighter;
-    width: 80vw;
+    width: 90vw;
     font-size: 100%;
     border-left: 2px solid #fff;
     padding: 7px;
-    line-height: 15px;
+    line-height: 20px;
   }
   #written-content {
     position: absolute;
     z-index: 0;
-    margin-top: 60vw;
+    margin-top: 45vw;
+  }
+  #written-content h4 {
+    font-family: "Inconsolata";
+    font-size: 150%;
+    line-height: 30px;
+    text-align: left;
   }
   #controls-center {
     position: fixed;
     padding: 0vw;
-    bottom: 10vw;
+    bottom: 50px;
   }
   #controls-center button {
     background-color: transparent;
-    font-family: monospace;
+    font-family: "Inconsolata";
     color: #fff;
     border: 1px solid #fff;
     font-size: 130%;
     padding: 10px;
     margin-left: 4.5vw;
+  }
+  #controls-center #set2-buttons {
+    display: none;
+  }
+  #contact-section {
+    position: absolute;
+    z-index: 10;
+    opacity: 0;
+    display: none;
+    overflow: hidden;
+  }
+  #contact-section #input-container {
+    margin-top: 75vw;
+    padding-left: 4vw;
+    width: 100%;
+  }
+  #contact-section textarea {
+    margin-top: 30px;
+  }
+  #contact-section input[type=text], #contact-section textarea, #contact-section input[type=email] {
+    border: none;
+    border-left: 1px solid #ffffff;
+    padding-left: 2vw;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+    background-color: transparent;
+    color: #fff;
+    font-weight: lgihter;
+    font-size: 120%;
+    font-family: "Inconsolata";
+  }
+  #contact-section input[type=text] {
+    border-bottom: 1px solid #fff;
+  }
+  #contact-section input[type=text]::-webkit-input-placeholder, #contact-section textarea::-webkit-input-placeholder, #contact-section input[type=email]::-webkit-input-placeholder {
+    color: #fff;
+  }
+  #contact-section input[type=text]:-ms-input-placeholder, #contact-section textarea:-ms-input-placeholder, #contact-section input[type=email]:-ms-input-placeholder {
+    color: #fff;
+  }
+  #contact-section input[type=text]::-ms-input-placeholder, #contact-section textarea::-ms-input-placeholder, #contact-section input[type=email]::-ms-input-placeholder {
+    color: #fff;
+  }
+  #contact-section input[type=text]::placeholder, #contact-section textarea::placeholder, #contact-section input[type=email]::placeholder {
+    color: #fff;
+  }
+  #contact-section input[type=submit] {
+    background-color: transparent;
+    font-family: "Inconsolata";
+    color: #fff;
+    border: 1px solid #fff;
+    font-size: 110%;
+    margin-top: 3vw;
+    padding: 10px;
   }
 }
 /*# sourceMappingURL=main.css.map */
