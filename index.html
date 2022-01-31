@@ -2,6 +2,7 @@
 
 <html>
     <head>
+        <title> AkashMulye. </title>
         <meta charset = "UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -17,17 +18,23 @@
     </head>
 
     <body>
+        <video id = "work-video-texture">
+            <source src = "" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
         <div id = "canvas"></div>
 
         <div id = "wrapper">
+            <div class="pulsating-circle"></div>
             <!--RETURN TO MAIN PAGE BUTTON HERE-->
             <!--LOADING PAGE GOES HERE-->
             <main id = "main-container">
-                <h1 id = "intro-text"> Hello world my name is Akash.</h1>
+                <h1 id = "intro-text"></h1>
 
                 <div id = "written-content">
-                    <h4> I am a creative developer based out of Toronto with a passion for creating responsive and interactive web applications using 
-                        HTML/CSS, JavaScript, React, JQuery, NodeJS and much more! 
+                    <h4> I am a <span class = "highlight">creative developer</span> based out of <span class = "highlight"> Toronto </span> with a passion for creating responsive and interactive web applications using 
+                        <span class = "highlight">HTML/CSS</span>, <span class = "highlight">JavaScript</span>, <span class = "highlight"> React </span>, <span class = "highlight">JQuery</span>, <span class = "highlight">NodeJS</span> and much more! 
                     </h4>
                 </div>
             </main>
@@ -39,8 +46,8 @@
                 </div>
 
                 <div id = "set2-buttons">
-                    <button id = "next-button"> NEXT PROJECT </button>
-                    <button id = "prev-button"> PREV PROJECT </button>
+                    <button id = "next-button"> NEXT </button>
+                    <button id = "prev-button"> PREV </button>
                 </div>
             </div>
 

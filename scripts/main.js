@@ -3,12 +3,20 @@ import Water from "../scripts/Water.js";
 import Sky from "../scripts/Sky.js";
 import OrbitControls from "../scripts/OrbitControls.js";
 
-console.log(THREEx.DomEvents);
-
 var cameraWork_flag = false, cameraContact_flag = false;
 var contact_flag = false, work_flag = false;
 
-var workPanel, workPanel_arr = [], geo_arr = [];
+var workPanel, workPanel_arr = [], geo_arr = [], videoMeshCounter = 0, videoSource, videoTexture;
+var workSnippetArr = [
+    "covidData.mp4",
+    "hintlab.mp4",
+    "imageGenerator.mp4",
+    "iyeism.mp4",
+    "mrgvsn.mp4",
+    "somewherelse.mp4",
+    "tensor.mp4",
+    "xylk.mp4"
+];
 
 class SceneManager {
     constructor(canvas) {
@@ -21,7 +29,6 @@ class SceneManager {
         const sky = buildSky();
         const sun = buildSun();
         const controls = setOrbitControls();
-        const domEvents = buildDomEvents();
 
         function buildScene() {
 
@@ -31,6 +38,7 @@ class SceneManager {
             return scene;
         }
 
+        //////////////////////////////////////////////WEBGL RENDERING
         function buildRenderer(canvas) {
 
             const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -116,6 +124,36 @@ class SceneManager {
             return ddh;
         }
 
+        //////////////////////////////////////////////DOM ELEMENTS
+
+        var i = 0;
+        const str = "Hello world my name is Akash.";
+        var speed = 200;
+
+        function textTypeout() {
+
+            if (i < str.length) {
+
+                document.getElementById("intro-text").innerHTML += str.charAt(i);
+                i++;
+                
+                setTimeout(function() {
+
+                    textTypeout();
+                }, speed);
+            
+            } else {
+
+                $("#written-content").delay(500).fadeIn();
+                $("#controls-center").delay(500).fadeIn();
+            }
+        }
+
+        window.onload = function() {
+
+            setTimeout(function() {textTypeout();}, 1000);
+        }
+
         //builds the work panel TV
         function buildWorkPanel() {
 
@@ -125,8 +163,34 @@ class SceneManager {
             controls.enabled = true;
 
             //webgl rendering
+            videoSource = document.getElementById("work-video-texture");
+            videoSource.setAttribute("src", `./work_snippets/${workSnippetArr[videoMeshCounter]}`);
+            videoSource.load();
+            videoSource.play();
+            videoSource.addEventListener("play", function() { this.currentTime = 1;});
+            videoSource.addEventListener("ended", onVideoEnd, false);
+
+            videoTexture = new THREE.VideoTexture(videoSource);
             const workGeo = new THREE.PlaneGeometry(170, 100, 100);
-            const workMaterial = new THREE.MeshStandardMaterial({ color: 0x000000, transparent: true, opacity: 0.8, side: THREE.DoubleSide });
+            const workMaterial = new THREE.MeshBasicMaterial({
+                map:  videoTexture, 
+                side: THREE.DoubleSide 
+            });
+
+            function onVideoEnd(e) {
+
+                videoMeshCounter++;
+
+                if (videoMeshCounter >= workSnippetArr.length) {
+
+                    videoMeshCounter = 0;
+                }
+
+                videoSource.setAttribute("src", `./work_snippets/${workSnippetArr[videoMeshCounter]}`);
+                videoSource.load();
+                videoSource.play();
+                videoSource.addEventListener("play", function() { this.currentTime = 1;});
+            }
 
             workPanel = new THREE.Mesh(workGeo, workMaterial);
             workPanel.position.set(-30, -100, 200);
@@ -144,11 +208,20 @@ class SceneManager {
             //aniamtions JQUERY
             $("#written-content").fadeOut();
             $("#intro-text").fadeOut();
-            $("#set1-buttons").fadeOut();
+            $("#portfolio-button").fadeOut();
+            $("#connect-button").fadeOut();
             $("#set2-buttons").delay(1000).fadeIn();
 
             //remove contact section
             $("#contact-section").fadeOut();
+
+            setTimeout(function() {
+
+                document.getElementById("set2-buttons").append(document.getElementById("connect-button"));
+                $("#connect-button").text("LETS CONNECT");
+                $("#connect-button").fadeIn();
+                $(".pulsating-circle").fadeIn();
+            }, 4000);
 
             setTimeout(function() {
 
@@ -205,20 +278,29 @@ class SceneManager {
 
                 setTimeout(function() {
 
+                    document.getElementById("set1-buttons").append(document.getElementById("portfolio-button"));
+                    document.getElementById("set1-buttons").append(document.getElementById("connect-button"));
+
                     $("#intro-text").text("Bring an idea, and I'll bring it to life.");
                     $("#intro-text").fadeIn();
 
                     $("#connect-button").text("RESUME/URLS");
+                    $("#set1-buttons").fadeIn();
+                    $(".pulsating-circle").fadeIn();
                     //link resume button to pdf of resume
                     
                 }, 700);
 
+                $("#set2-buttons").fadeOut();
                 $("#contact-section").fadeIn();
                 $("#contact-section").delay(500).animate({opacity: "1"}, 500);
                 $("#input-container").delay(700).animate({opacity: "1", marginTop: "65vw"}, 500);
 
                 $("#connect-button").delay(200).fadeOut();
-                $("#connect-button").delay(4000).fadeIn()
+                $("#connect-button").delay(2000).fadeIn();
+
+                $("#portfolio-button").delay(200).fadeOut();
+                $("#portfolio-button").delay(2000).fadeIn();
             
             } else {
 
@@ -239,9 +321,7 @@ class SceneManager {
             return controls;
         }
 
-        function buildDomEvents() {
-        }
-
+        //event listeners
         document.getElementById("portfolio-button").onmousedown = function () {
 
             contact_flag = false;
@@ -249,6 +329,11 @@ class SceneManager {
 
             buildWorkPanel();
             buildTECHSTACKgeo();
+
+            setTimeout(function() {
+
+                $("#connect-button").fadeIn();
+            }, 4000);
         };
 
         document.getElementById("connect-button").onmousedown = function () {
@@ -257,6 +342,43 @@ class SceneManager {
             contact_flag = true;
             buildContactForm();
         };
+
+        //next and prev button event listeners
+        document.getElementById("next-button").onmousedown = function() {
+
+            console.log(videoMeshCounter);
+
+            if (videoMeshCounter >= workSnippetArr.length - 1) {
+
+                videoMeshCounter = 0;
+            
+            } else {
+
+                videoMeshCounter++;
+            }
+
+            videoSource.setAttribute("src", `./work_snippets/${workSnippetArr[videoMeshCounter]}`);
+            videoSource.load();
+            videoSource.play();
+            videoSource.addEventListener("play", function() { this.currentTime = 1;});
+        }
+
+        document.getElementById("prev-button").onmousedown = function() {
+
+            if (videoMeshCounter <= 0) {
+                
+                videoMeshCounter = workSnippetArr.length - 1;
+            
+            } else {
+
+                videoMeshCounter--;
+            }
+
+            videoSource.setAttribute("src", `./work_snippets/${workSnippetArr[videoMeshCounter]}`);
+            videoSource.load();
+            videoSource.play();
+            videoSource.addEventListener("play", function() { this.currentTime = 1;});
+        }
 
         this.update = function () {
             // Animates water
@@ -283,7 +405,7 @@ class SceneManager {
                     var current_pos = camera.position.z;
                     camera.position.z = current_pos;
 
-                    controls.target.set(0, 10, 650);
+                    controls.target.set(0, 10, 600);
                     controls.update();
 
                     camera.rotation.set(-0.11710874456686426, 0.17349974499856707, 0.02030669081097108);
