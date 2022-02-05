@@ -159,6 +159,7 @@ button, input[type=submit], .pulsating-circle {
     position: fixed;
     padding: 0vw;
     bottom: 50px;
+    display: none;
   }
   #controls-center button {
     background-color: transparent;
