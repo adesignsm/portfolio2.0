@@ -6,6 +6,10 @@ import OrbitControls from "../scripts/OrbitControls.js";
 var cameraWork_flag = false, cameraContact_flag = false;
 var contact_flag = false, work_flag = false;
 
+var viewport_mobile = window.matchMedia("(min-width: 200px) and (max-width: 600px)");
+var viewport_tablet = window.matchMedia("(min-width: 600px) and (max-width: 1160px)")
+var viewport_desktop = window.matchMedia("(min-width: 1160px) and (max-width: 1920px)");
+
 var workPanel, workPanel_arr = [], geo_arr = [], videoMeshCounter = 0, videoSource, videoTexture;
 var workSnippetArr = [
     "covidData.mp4",
@@ -15,7 +19,8 @@ var workSnippetArr = [
     "mrgvsn.mp4",
     "somewherelse.mp4",
     "tensor.mp4",
-    "xylk.mp4"
+    "xylk.mp4",
+    "react_realestate.mp4"
 ];
 
 class SceneManager {
@@ -164,7 +169,6 @@ class SceneManager {
 
             //webgl rendering
             videoSource = document.getElementById("work-video-texture");
-            videoSource.style.display = "none";
             videoSource.setAttribute("src", `./work_snippets/${workSnippetArr[videoMeshCounter]}`);
             videoSource.load();
             videoSource.play();
@@ -221,6 +225,7 @@ class SceneManager {
                 document.getElementById("set2-buttons").append(document.getElementById("connect-button"));
                 $("#connect-button").text("LETS CONNECT");
                 $("#connect-button").fadeIn();
+                $(".pulsating-circle").css({"right": "40px"});
                 $(".pulsating-circle").fadeIn();
             }, 4000);
 
@@ -286,6 +291,14 @@ class SceneManager {
                     $("#intro-text").fadeIn();
 
                     $("#connect-button").text("RESUME/URLS");
+
+                    if (viewport_mobile.matches) {
+                        $("#set1-buttons").css({"margin-top": "-35vw"});
+                    
+                    } else if (viewport_tablet.matches) {
+                        $("#set1-buttons").css({"margin-top": "-10vw"});
+                    }
+
                     $("#set1-buttons").fadeIn();
                     $(".pulsating-circle").fadeIn();
                     //link resume button to pdf of resume
@@ -295,7 +308,19 @@ class SceneManager {
                 $("#set2-buttons").fadeOut();
                 $("#contact-section").fadeIn();
                 $("#contact-section").delay(500).animate({opacity: "1"}, 500);
-                $("#input-container").delay(700).animate({opacity: "1", marginTop: "65vw"}, 500);
+
+                //mobile or not
+                if (viewport_mobile.matches) {
+                    $("#input-container").delay(700).animate({opacity: "1", marginTop: "50vw"}, 500);
+                
+                } else if (viewport_tablet.matches) {
+                    $("#input-container").delay(700).animate({opacity: "1", marginTop: "30vw"}, 500);
+                
+                } else if (viewport_desktop.matches) {
+                    $("#input-container").delay(700).animate({opacity: "1", marginTop: "10vw"}, 500);
+                }
+
+                // $("#input-container").delay(700).animate({opacity: "1", marginTop: "20vw"}, 500);
 
                 $("#connect-button").delay(200).fadeOut();
                 $("#connect-button").delay(2000).fadeIn();
@@ -339,6 +364,7 @@ class SceneManager {
 
         document.getElementById("connect-button").onmousedown = function () {
 
+            $(".pulsating-circle").css({"right": "60px"});
             work_flag = false;
             contact_flag = true;
             buildContactForm();
