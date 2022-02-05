@@ -133,7 +133,7 @@ class SceneManager {
 
         var i = 0;
         const str = "Hello world my name is Akash.";
-        var speed = 200;
+        var speed = 100;
 
         function textTypeout() {
 
@@ -364,7 +364,13 @@ class SceneManager {
 
         document.getElementById("connect-button").onmousedown = function (event) {
 
-            $(".pulsating-circle").css({"right": "60px"});
+            if (viewport_mobile.matches) {
+                $(".pulsating-circle").css({"right": "10px"});
+            } else if (viewport_tablet.matches) {
+                $(".pulsating-circle").css({"right": "20px"});
+            } else if (viewport_desktop.matches) {
+                $(".pulsating-circle").css({"right": "30px"});
+            }
             work_flag = false;
             contact_flag = true;
             buildContactForm();

@@ -159,7 +159,6 @@ button, input[type=submit], .pulsating-circle {
     position: fixed;
     padding: 0vw;
     bottom: 50px;
-    display: none;
   }
   #controls-center button {
     background-color: transparent;
@@ -179,6 +178,20 @@ button, input[type=submit], .pulsating-circle {
     opacity: 0;
     display: none;
     overflow: hidden;
+  }
+  #contact-section h1 {
+    margin: 5vw;
+    margin-top: 50vw;
+    font-family: "Inconsolata";
+    font-weight: lighter;
+    font-size: 150%;
+    line-height: 30px;
+    text-align: left;
+    color: #fff;
+    width: 80vw;
+    padding: 1vw;
+    border-left: 1px solid #fff;
+    border-bottom: 1px solid #fff;
   }
   #contact-section #input-container {
     margin-top: 75vw;
@@ -228,15 +241,12 @@ button, input[type=submit], .pulsating-circle {
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1160px) {
-  .pulsating-circle {
-    top: 100px;
-  }
   #main-container {
     position: fixed;
     z-index: 2;
   }
   #main-container #intro-text {
-    width: 100%;
+    width: 80%;
     padding-right: -100vw;
     font-size: 200%;
   }
@@ -276,7 +286,6 @@ button, input[type=submit], .pulsating-circle {
     padding: 0vw;
     top: 750px;
     margin-left: 10vw;
-    display: none;
   }
   #controls-center button {
     background-color: transparent;
@@ -298,6 +307,20 @@ button, input[type=submit], .pulsating-circle {
     opacity: 0;
     display: none;
     overflow: hidden;
+  }
+  #contact-section h1 {
+    margin: 5vw;
+    margin-top: 30vw;
+    font-family: "Inconsolata";
+    font-weight: lighter;
+    font-size: 200%;
+    line-height: 50px;
+    text-align: left;
+    color: #fff;
+    width: 60vw;
+    padding: 1vw;
+    border-left: 1px solid #fff;
+    border-bottom: 1px solid #fff;
   }
   #contact-section form {
     width: 70vw;
@@ -413,6 +436,20 @@ button, input[type=submit], .pulsating-circle {
     opacity: 0;
     display: none;
     overflow: hidden;
+  }
+  #contact-section h1 {
+    margin: 5vw;
+    margin-top: 15vw;
+    font-family: "Inconsolata";
+    font-weight: lighter;
+    font-size: 300%;
+    line-height: 50px;
+    text-align: left;
+    color: #fff;
+    width: 30vw;
+    padding: 1vw;
+    border-left: 1px solid #fff;
+    border-bottom: 1px solid #fff;
   }
   #contact-section form {
     width: 50vw;
