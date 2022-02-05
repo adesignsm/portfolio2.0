@@ -164,6 +164,7 @@ class SceneManager {
 
             //webgl rendering
             videoSource = document.getElementById("work-video-texture");
+            videoSource.style.display = "none";
             videoSource.setAttribute("src", `./work_snippets/${workSnippetArr[videoMeshCounter]}`);
             videoSource.load();
             videoSource.play();
