@@ -307,7 +307,7 @@ class SceneManager {
 
                 $("#set2-buttons").fadeOut();
                 $("#contact-section").fadeIn();
-                $("#contact-section").delay(500).animate({opacity: "1"}, 500);
+                $("#contact-section").delay(800).animate({opacity: "1"}, 500);
 
                 //mobile or not
                 if (viewport_mobile.matches) {

@@ -413,7 +413,7 @@ button, input[type=submit], .pulsating-circle {
   #controls-center {
     position: fixed;
     padding: 0vw;
-    top: 650px;
+    top: 720px;
     display: none;
   }
   #controls-center button {
