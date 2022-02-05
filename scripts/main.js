@@ -290,7 +290,7 @@ class SceneManager {
                     $("#intro-text").text("Bring an idea, and I'll bring it to life.");
                     $("#intro-text").fadeIn();
 
-                    $("#connect-button").text("RESUME/URLS");
+                    $("#connect-button").text("LINKEDIN");
 
                     if (viewport_mobile.matches) {
                         $("#set1-buttons").css({"margin-top": "-35vw"});
@@ -362,12 +362,21 @@ class SceneManager {
             }, 4000);
         };
 
-        document.getElementById("connect-button").onmousedown = function () {
+        document.getElementById("connect-button").onmousedown = function (event) {
 
             $(".pulsating-circle").css({"right": "60px"});
             work_flag = false;
             contact_flag = true;
             buildContactForm();
+
+            if (event.target.innerHTML === "LINKEDIN") {
+
+                 window.open("https://www.linkedin.com/in/akash-mulye-1544b1182", "_self");       
+            
+            } else {
+
+                return false;
+            }
         };
 
         //next and prev button event listeners

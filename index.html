@@ -26,7 +26,7 @@
         <div id = "canvas"></div>
 
         <div id = "wrapper">
-            <div class="pulsating-circle"></div>
+            <!-- <div id = "home-button" class="pulsating-circle"></div> -->
             <!--RETURN TO MAIN PAGE BUTTON HERE-->
             <!--LOADING PAGE GOES HERE-->
             <main id = "main-container">
@@ -52,16 +52,18 @@
             </div>
 
             <section id = "contact-section">
-                <form id = "input-container">
-                    <input type = "text" id = "name-input" placeholder = "Name(required)" required>
-                    <input type = "email" id = "email-input" placeholder = "Email(required)" require>
-                    <textarea id = "message-input" placeholder = "Message(required)" cols = "46" rows = "5"></textarea>
+                <form id = "input-container" method="post" action="scripts/mailer.php">
+                    <input name = "name" type = "text" id = "name-input" placeholder = "Name(required)" required>
+                    <input name = "email" type = "email" id = "email-input" placeholder = "Email(required)" require>
+                    <textarea name = "message" id = "message-input" placeholder = "Message(required)" cols = "46" rows = "5"></textarea>
                     <input type = "submit" id = "submit-button" value = "Whats your idea!">
                 </form>
             </section>
         </div>
     </body>
 
+    <script type = "application/php" src = "scripts/mailer.php"></script>
+    <script type = "text/javascript" src = "scripts/mail.js"></script>
     <script type = "module" src = "scripts/main.js"></script>
     <script type = "text/javascript" src = "scripts/threex.domevents.js"></script>
 </html>
